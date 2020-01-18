@@ -8,7 +8,78 @@
 </head>
 <body>
     <script>
-        
+        function computerPlay() {
+            var hand = ["rock", "paper", "scissors"];
+            let chosenHand = Math.floor(Math.random() * 3);  
+            return hand[chosenHand];
+        }
+
+        function playerPlay() {
+            hand = prompt("Please pick a hand:");
+            return hand.toLowerCase();
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            let score = "";
+            if (playerSelection == "rock") {
+                if (playerSelection == computerSelection) {
+                    score = "draw";
+                } else if (computerSelection == "paper") {
+                    score = "lose";
+                } else {
+                    score = "win";
+                }
+            } else if (playerSelection == "scissors") {
+                if (playerSelection == computerSelection) {
+                    score = "draw";
+                } else if (computerSelection == "rock") {
+                    score = "lose";
+                } else {
+                    score = "win";
+                }
+            } else if (playerSelection == "paper") {
+                if (playerSelection == computerSelection) {
+                    score = "draw";
+                } else if (computerSelection == "scissors") {
+                    score = "lose";
+                } else {
+                    score = "win";
+                }
+            } else {
+                alert("Invalid hand! Please pick one of the following: Rock, Paper, Scissors.");
+                
+            }
+            return {
+                score: score,
+                playerHand: playerSelection,
+                computerHand: computerSelection,
+            };
+        }
+
+        function game(numOfRounds) {
+            let wins = 0;
+            let loses = 0;
+            let draws = 0;
+            for (let round = 0; round < numOfRounds; round++) {
+                var result = playRound(playerPlay(), computerPlay());
+
+                if (result.score == "win") {
+                    wins++;
+                    alert(`Player chose ${result.playerHand}, and computer chose ${result.computerHand}. Player won!`);
+                } else if ( result.score == "lose"){
+                    loses++;
+                    alert(`Player chose ${result.playerHand}, and computer chose ${result.computerHand}. Player lost!`);
+                } else {
+                    draws++;
+                    alert(`Player chose ${result.playerHand}, and computer chose ${result.computerHand}. It's a draw!`);
+                }
+                
+            }
+
+            console.log(`You have played ${numOfRounds} rounds and won ${wins} times!`);
+        }
+
+
     </script>
 </body>
 </html>
